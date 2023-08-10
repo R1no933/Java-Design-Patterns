@@ -20,6 +20,11 @@ public class SingletonRunner {
         System.out.println(firstStaticBlockInstance.getInfo() + ". First instance hash = " + firstStaticBlockInstance.hashCode());
         System.out.println(secondStatickBlockInstance.getInfo()+ ". Second instance hash = " + secondStatickBlockInstance.hashCode() + "\n");
 
+        //check Bill Pugh init
+        BillPughSingleton firstBPInstance = BillPughSingleton.getInstance();
+        BillPughSingleton secondBPInstance = BillPughSingleton.getInstance();
+        System.out.println(firstBPInstance.getInfo() + ". First instance hash = " + firstBPInstance.hashCode());
+        System.out.println(secondBPInstance.getInfo()+ ". Second instance hash = " + secondBPInstance.hashCode() + "\n");
 
     }
 }
