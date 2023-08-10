@@ -1,7 +1,21 @@
 package patterns.creational_patterns.singleton;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+
+import patterns.creational_patterns.singleton.serialization.SerializedWithoutResolve;
+import patterns.creational_patterns.singleton.serialization.SerializedWithResolve;
+
+import java.io.*;
+
 public class SingletonRunner {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
         //check eager init
         EagerInitSingleton firstEagerInstance = EagerInitSingleton.getInstance();
         EagerInitSingleton secondEagerInstance = EagerInitSingleton.getInstance();
@@ -37,6 +51,34 @@ public class SingletonRunner {
         EnumSingleton secondEnumInstance = EnumSingleton.INSTANCE;
         System.out.println(firstEnumInstance.getInfo() + ". First instance hash = " + firstEnumInstance.hashCode());
         System.out.println(secondEnumInstance.getInfo()+ ". Second instance hash = " + secondEnumInstance.hashCode() + "\n");
-        
+
+        //serialization and singleton(without readResolve())
+        SerializedWithoutResolve firstSerializedInstance = SerializedWithoutResolve.getInstance();
+        ObjectOutput output = new ObjectOutputStream(new FileOutputStream(
+                "testWithoutResolve.ser"
+        ));
+        output.writeObject(firstSerializedInstance);
+        output.close();
+
+        ObjectInput input = new ObjectInputStream(new FileInputStream(
+                "testWithoutResolve.ser"));
+        SerializedWithoutResolve secondSerializedInstance = (SerializedWithoutResolve) input.readObject();
+        input.close();
+
+        System.out.println(firstSerializedInstance.getInfo() + ". First instance hash = " + firstSerializedInstance.hashCode());
+        System.out.println(secondSerializedInstance.getInfo()+ ". Second instance hash = " + secondSerializedInstance.hashCode() + "\n");
+
+        //serialization and singleton(with readResolve())
+        SerializedWithResolve firstResolveInstance = SerializedWithResolve.getInstance();
+        ObjectOutput outputResolve = new ObjectOutputStream(new FileOutputStream("testWithResolve.ser"));
+        outputResolve.writeObject(firstResolveInstance);
+        outputResolve.close();
+
+        ObjectInput inputResolve = new ObjectInputStream(new FileInputStream("testWithResolve.ser"));
+        SerializedWithResolve secondResolveInstance = (SerializedWithResolve) inputResolve.readObject();
+        inputResolve.close();
+
+        System.out.println(firstResolveInstance.getInfo() + ". First instance hash = " + firstResolveInstance.hashCode());
+        System.out.println(secondResolveInstance.getInfo() + ". Second instance hash = " + secondResolveInstance.hashCode());
     }
 }
