@@ -26,5 +26,11 @@ public class SingletonRunner {
         System.out.println(firstBPInstance.getInfo() + ". First instance hash = " + firstBPInstance.hashCode());
         System.out.println(secondBPInstance.getInfo()+ ". Second instance hash = " + secondBPInstance.hashCode() + "\n");
 
+        //check thread safe
+        ThreadSafeSingleton firstThreadSafeInstance = ThreadSafeSingleton.getInstance();
+        ThreadSafeSingleton secondThreadSafeInstance = ThreadSafeSingleton.getInstanceWithCheking();
+        System.out.println(firstThreadSafeInstance.getInfo() + ". First instance hash = " + firstThreadSafeInstance.hashCode());
+        System.out.println(secondThreadSafeInstance.getInfo()+ ". Second instance hash = " + secondThreadSafeInstance.hashCode() + "\n");
+
     }
 }
