@@ -32,5 +32,11 @@ public class SingletonRunner {
         System.out.println(firstThreadSafeInstance.getInfo() + ". First instance hash = " + firstThreadSafeInstance.hashCode());
         System.out.println(secondThreadSafeInstance.getInfo()+ ". Second instance hash = " + secondThreadSafeInstance.hashCode() + "\n");
 
+        //check singleton enum
+        EnumSingleton firstEnumInstance = EnumSingleton.INSTANCE;
+        EnumSingleton secondEnumInstance = EnumSingleton.INSTANCE;
+        System.out.println(firstEnumInstance.getInfo() + ". First instance hash = " + firstEnumInstance.hashCode());
+        System.out.println(secondEnumInstance.getInfo()+ ". Second instance hash = " + secondEnumInstance.hashCode() + "\n");
+        
     }
 }
