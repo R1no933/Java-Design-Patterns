@@ -14,5 +14,12 @@ public class SingletonRunner {
         System.out.println(firstLazyInstance.getInfo() + ". First instance hash = " + firstLazyInstance.hashCode());
         System.out.println(secondLazyInstance.getInfo()+ ". Second instance hash = " + secondLazyInstance.hashCode() + "\n");
 
+        //check static block init
+        StaticBlockInitSingleton firstStaticBlockInstance = StaticBlockInitSingleton.getInstance();
+        StaticBlockInitSingleton secondStatickBlockInstance = StaticBlockInitSingleton.getInstance();
+        System.out.println(firstStaticBlockInstance.getInfo() + ". First instance hash = " + firstStaticBlockInstance.hashCode());
+        System.out.println(secondStatickBlockInstance.getInfo()+ ". Second instance hash = " + secondStatickBlockInstance.hashCode() + "\n");
+
+
     }
 }
