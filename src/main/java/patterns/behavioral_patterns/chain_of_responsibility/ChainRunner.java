@@ -1,5 +1,5 @@
 package patterns.behavioral_patterns.chain_of_responsibility;
-
+//hui pizda dgigurda
 import java.util.Scanner;
 
 public class ChainRunner {
